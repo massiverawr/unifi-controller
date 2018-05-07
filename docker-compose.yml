@@ -1,0 +1,21 @@
+version: '3'
+services:
+ unifi-controller: 
+   container_name: unifi.controller-5.7.23
+   image: jacobalberty/unifi:5.7.23
+   restart: always
+   labels: 
+     - 'unifi-controller'
+   environment: 
+     - TZ=Americas/New_York
+     - RUNAS_UID0=false
+     - UNIFI_UID=1001
+     - UNIFI_GID=1001
+   ports:
+     - '127.0.0.1:3478:3478/udp'
+     - '127.0.0.1:8080:8080'
+     - '127.0.0.1:8443:8443'
+     - '127.0.0.1:10001:10001/udp'
+     - '127.0.0.1:8843:8843'
+   volumes: 
+     - '/home/docks/unifi-controller/unifi:/unifi'
